@@ -1,5 +1,6 @@
 #include "Server.h"
-#include <QDebug>
+#include "Command.h"
+#include "Request.h"
 
 Server::Server(Log *log)
 {

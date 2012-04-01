@@ -63,27 +63,26 @@ public:
     }
 
     QString serializeMovement() {
-        QString serial = "";
         //type,x,y,z,x,y,z
-        serial.sprintf("%d,%.3f,%.3f,%.3f,%.3f,%.3f,%.3f", this->type,
-                       this->pos.x(), this->pos.y(), this->pos.z(),
-                       this->dest.x(), this->dest.y(), this->dest.z());
+        QString serial = QString("%1,%2,%3,%4,%5f,%6,%7").arg(this->type)
+                .arg(this->pos.x(), 0, 'f', 3).arg(this->pos.y(), 0, 'f', 3)
+                .arg(this->pos.z(), 0, 'f', 3).arg(this->dest.x(), 0, 'f', 3)
+                .arg(this->dest.y(), 0, 'f', 3).arg(this->dest.z(), 0, 'f', 3);
         return serial;
     }
 
     QString serializePosition() {
-        QString serial = "";
         //type,x,y,z
-        serial.sprintf("%d,%.3f,%.3f,%.3f", this->type,
-                       this->pos.x(), this->pos.y(), this->pos.z());
+        QString serial = QString("%1,%2,%3,%4").arg(this->type)
+                .arg(this->pos.x()).arg(this->pos.y()).arg(this->pos.z());
         return serial;
     }
 
     QString serializeChat() {
-        QString serial = "";
         //type,sende,unixtime,message     message inside double quotes
-        serial.sprintf("%d,%s,%d,\"%s\"", this->type,
-                       this->sender, this->time.toTime_t(), this->message);
+        QString serial = QString("%1,%2,%3,%4").arg(this->type)
+                 .arg(this->sender).arg(this->time.toTime_t()).arg(this->message);
+        return serial;
     }
 
 private:
