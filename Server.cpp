@@ -1,6 +1,4 @@
 #include "Server.h"
-#include "Command.h"
-#include "Request.h"
 
 Server::Server(Log *log)
 {
@@ -9,7 +7,7 @@ Server::Server(Log *log)
     server = new QWsServer(this);
     if ( ! server->listen(QHostAddress::Any, port) )
     {
-        log->log( "Error: Can't launch server" );
+        log->log( "Error: Can't launch server. You suck." );
     }
     else
     {
@@ -25,7 +23,7 @@ Server::~Server()
 
 void Server::onClientConnection()
 {
-    QWsSocket * clientSocket = server->nextPendingConnection();
+    Client * clientSocket = dynamic_cast<Client*>(server->nextPendingConnection());
 
     QObject * clientObject = qobject_cast<QObject*>(clientSocket);
 
@@ -34,23 +32,16 @@ void Server::onClientConnection()
     connect(clientObject, SIGNAL(pong(quint64)), this, SLOT(onPong(quint64)));
 
     clients << clientSocket;
-
-    log->log("Client connected");
 }
 
 void Server::onDataReceived(QString data)
 {
-    QWsSocket * socket = qobject_cast<QWsSocket*>( sender() );
+    Client * socket = qobject_cast<Client*>( sender() );
     if (socket == 0)
         return;
 
-    log->log( data );
+    Request *request = new Request(socket, data);
 
-    QWsSocket * client;
-    foreach ( client, clients )
-    {
-        client->write( data );
-    }
 }
 
 void Server::onPong(quint64 elapsedTime)
@@ -60,7 +51,7 @@ void Server::onPong(quint64 elapsedTime)
 
 void Server::onClientDisconnection()
 {
-    QWsSocket * socket = qobject_cast<QWsSocket*>(sender());
+    Client * socket = qobject_cast<Client*>(sender());
     if (socket == 0)
         return;
 

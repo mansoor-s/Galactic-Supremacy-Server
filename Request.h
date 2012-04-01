@@ -4,6 +4,7 @@
 #include <QRegExp>
 #include <QStringList>
 #include <Qt/qvector3d.h>
+#include "QtWebSocket/QWsSocket.h"
 
 
 class Request {
@@ -12,11 +13,14 @@ public:
         UnitMovement,
         AttackOrder,
         PrivateChat,
-        AllianceChat
+        AllianceChat,
+        Authentication
     };
 
 
-    Request(int clientId, QString data) {
+    Request(QWsSocket *client, QString data) {
+        this->valid = false;
+        this->client = client;
         this->deserialize(data);
     }
     /*
@@ -34,6 +38,8 @@ public:
     alliance chat
     type,message
 
+    authentication
+    type,sessionId
 
   */
     void deserialize(QString data) {
@@ -63,6 +69,8 @@ public:
         } else if (this->type == Request::AllianceChat && count == 2) {
             this->message = strList.at(1);
 
+        } else if (this->type == Request::Authentication && count == 2) {
+            this->sessionId = strList.at(1);
         } else {
             this->valid = false;
             return;
@@ -73,9 +81,11 @@ public:
 
 
     bool isValid() {
+        return this->valid;
     }
 
 private:
+    QWsSocket *client;
     bool valid;
     int type;
     QString id;
@@ -84,6 +94,7 @@ private:
     QString targetId;
     QString recipient;
     QString message;
+    QString sessionId;
 
 };
 #endif // REQUEST_H

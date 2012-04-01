@@ -29,7 +29,8 @@ HEADERS += \
     QtWebSocket/QWsServer.h \
     QtWebSocket/QWsSocket.h \
     Command.h \
-    Request.h
+    Request.h \
+    Client.h
 
 OTHER_FILES += \
     Readme.md \

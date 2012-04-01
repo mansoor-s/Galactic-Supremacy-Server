@@ -6,6 +6,9 @@
 
 #include "QtWebSocket/QWsServer.h"
 #include "QtWebSocket/QWsSocket.h"
+#include "Client.h"
+#include "Command.h"
+#include "Request.h"
 #include "log.h"
 
 class Server : public QObject
@@ -24,7 +27,7 @@ public slots:
 
 private:
     QWsServer * server;
-    QList<QWsSocket*> clients;
+    QList<Client*> clients;
     Log *log;
 };
 
