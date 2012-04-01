@@ -33,4 +33,5 @@ HEADERS += \
 
 OTHER_FILES += \
     Readme.md \
-    License.txt
+    License.txt \
+    .gitignore
