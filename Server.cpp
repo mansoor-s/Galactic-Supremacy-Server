@@ -1,7 +1,6 @@
 #include "Server.h"
 
-Server::Server(Log *log)
-{
+Server::Server(Log *log) {
     this->log = log;
     int port = 1337;
     server = new QWsServer(this);
@@ -17,12 +16,10 @@ Server::Server(Log *log)
     this->log = log;
 }
 
-Server::~Server()
-{
+Server::~Server() {
 }
 
-void Server::onClientConnection()
-{
+void Server::onClientConnection() {
     Client * clientSocket = dynamic_cast<Client*>(server->nextPendingConnection());
 
     QObject * clientObject = qobject_cast<QObject*>(clientSocket);
@@ -34,23 +31,27 @@ void Server::onClientConnection()
     clients << clientSocket;
 }
 
-void Server::onDataReceived(QString data)
-{
+void Server::onDataReceived(QString data) {
     Client * socket = qobject_cast<Client*>( sender() );
     if (socket == 0)
         return;
 
     Request *request = new Request(socket, data);
 
+    //ignore malformed requests... perhaps log them in the future??
+    if(!request->isValid()) {
+        delete request;
+        return;
+    }
+
+    route(request);
 }
 
-void Server::onPong(quint64 elapsedTime)
-{
+void Server::onPong(quint64 elapsedTime) {
     log->log( "ping: " + QString::number(elapsedTime) + " ms" );
 }
 
-void Server::onClientDisconnection()
-{
+void Server::onClientDisconnection() {
     Client * socket = qobject_cast<Client*>(sender());
     if (socket == 0)
         return;
@@ -58,7 +59,11 @@ void Server::onClientDisconnection()
     clients.removeOne(socket);
 
     socket->deleteLater();
+}
 
-    log->log("Client disconnected");
+void Server::route(Request *req) {
+    //switch(req->getType()) {
+      //  case
+    //}
 }
 

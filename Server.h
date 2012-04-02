@@ -24,6 +24,7 @@ public slots:
     void onDataReceived(QString data);
     void onPong(quint64 elapsedTime);
     void onClientDisconnection();
+    void route(Request* req);
 
 private:
     QWsServer * server;

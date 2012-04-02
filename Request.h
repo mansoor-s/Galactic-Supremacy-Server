@@ -4,7 +4,7 @@
 #include <QRegExp>
 #include <QStringList>
 #include <Qt/qvector3d.h>
-#include "QtWebSocket/QWsSocket.h"
+#include "Client.h"
 
 
 class Request {
@@ -18,11 +18,55 @@ public:
     };
 
 
-    Request(QWsSocket *client, QString data) {
+    Request(Client *client, QString data) {
         this->valid = false;
         this->client = client;
         this->deserialize(data);
     }
+
+    //getters
+    Client* getClient() {
+        return this->client;
+    }
+
+    bool isValid() {
+        return this->valid;
+    }
+
+    int getType() {
+        return this->type;
+    }
+
+    QString getId() {
+        return this->id;
+    }
+
+    QVector3D *getDestination() {
+        return this->dest;
+    }
+
+    QString getAttackerId() {
+        return this->attackerId;
+    }
+
+    QString getTargetId() {
+        return this->targetId;
+    }
+
+    QString getRecipient() {
+        return this->recipient;
+    }
+
+    QString getMessage() {
+        return this->message;
+    }
+
+    QString getSessionId() {
+        return this->sessionId;
+    }
+
+
+protected:
     /*
     Reques formats:
 
@@ -79,13 +123,8 @@ public:
         this->valid = true;
     }
 
-
-    bool isValid() {
-        return this->valid;
-    }
-
 private:
-    QWsSocket *client;
+    Client *client;
     bool valid;
     int type;
     QString id;

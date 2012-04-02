@@ -10,6 +10,8 @@ QT       += network
 
 QT       -= gui
 
+LIBS    += -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options -lboost_system-mt
+
 TARGET = Galactic-Supremacy-Server
 CONFIG   += console
 CONFIG   -= app_bundle
@@ -21,7 +23,10 @@ SOURCES += main.cpp \
     Server.cpp \
     log.cpp \
     QtWebSocket/QWsSocket.cpp \
-    QtWebSocket/QWsServer.cpp
+    QtWebSocket/QWsServer.cpp \
+    Chat.cpp \
+    EventLoop.cpp \
+    DatabasePool.cpp
 
 HEADERS += \
     Server.h \
@@ -30,7 +35,11 @@ HEADERS += \
     QtWebSocket/QWsSocket.h \
     Command.h \
     Request.h \
-    Client.h
+    Client.h \
+    Database.h \
+    Chat.h \
+    EventLoop.h \
+    DatabasePool.h
 
 OTHER_FILES += \
     Readme.md \
