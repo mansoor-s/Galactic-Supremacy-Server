@@ -1,11 +1,12 @@
 #include "EventLoop.h"
 
-EventLoop::EventLoop(QObject *parent = 0)
+EventLoop::EventLoop(DatabasePool* pool, QObject *parent = 0)
     : QObject(parent)
 {
     timer = new QTimer();
     timer->setInterval(250);
     connect(timer, SIGNAL(timeout()), this, SLOT(loop()));
+    this->dbPool = pool;
 }
 
 void EventLoop::start() {
@@ -17,9 +18,7 @@ void EventLoop::stop() {
 }
 
 
-
-
 void EventLoop::loop() {
-
+    //this->dbPool->getUserId("dfsdfdsdf", EventLoop::someFunction);
 }
 

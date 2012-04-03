@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     QtWebSocket/QWsServer.cpp \
     Chat.cpp \
     EventLoop.cpp \
-    DatabasePool.cpp
+    DatabasePool.cpp \
+    DBWorker.cpp
 
 HEADERS += \
     Server.h \
@@ -36,10 +37,10 @@ HEADERS += \
     Command.h \
     Request.h \
     Client.h \
-    Database.h \
     Chat.h \
     EventLoop.h \
-    DatabasePool.h
+    DatabasePool.h \
+    DBWorker.h
 
 OTHER_FILES += \
     Readme.md \

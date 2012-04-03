@@ -2,11 +2,12 @@
 #define EVENTLOOP_H
 #include <QObject>
 #include <QTimer>
+#include <DatabasePool.h>
 
 class EventLoop : public QObject{
     Q_OBJECT
 public:
-    EventLoop(QObject *parent);
+    EventLoop(DatabasePool* pool, QObject *parent);
 
 public slots:
     void loop();
@@ -15,6 +16,7 @@ public slots:
 
 private:
     QTimer *timer;
+    DatabasePool *dbPool;
 };
 
 #endif // EVENTLOOP_H

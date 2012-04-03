@@ -2,20 +2,33 @@
 #define DATABASEPOOL_H
 
 #include <QList>
-#include "Database.h"
+#include <QThread>
+#include "DBWorker.h"
 
 class DatabasePool
 {
 public:
+    typedef void (*Callback)(mongo::BSONObj obj);
+
     struct DBContainer {
-        Database *db;
+        QThread *thread;
+        DBWorker *worker;
         bool isAvailable;
+        Callback callback;
     };
 
     DatabasePool(const char* host);
 
 private:
     QList<DBContainer*> *dbs;
+    //QList<
+
+public slots:
+
+    void finished(DBContainer* container, mongo::BSONObj obj);
+
+
+
 };
 
 #endif // DATABASEPOOL_H

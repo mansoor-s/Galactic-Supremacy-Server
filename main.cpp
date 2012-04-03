@@ -1,9 +1,6 @@
-#include <QList>
-#include "mongo/client/dbclient.h"
 #include <QtCore/QCoreApplication>
 #include "Server.h"
 #include "log.h"
-#include <QTimer>
 
 #include "Chat.h"
 
