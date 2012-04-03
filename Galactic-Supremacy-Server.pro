@@ -42,7 +42,8 @@ HEADERS += \
     EventLoop.h \
     DatabasePool.h \
     DBWorker.h \
-    Ship.h
+    Ship.h \
+    Flow.h
 
 OTHER_FILES += \
     Readme.md \

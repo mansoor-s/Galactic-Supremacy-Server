@@ -1,6 +1,6 @@
 #include "Server.h"
 
-Server::Server(Log *log) {
+Server::Server(DatabasePool *db, Log *log) {
     this->log = log;
     int port = 1337;
     server = new QWsServer(this);
@@ -17,6 +17,7 @@ Server::Server(Log *log) {
 }
 
 Server::~Server() {
+    //delete db objects to cleanly close db connections
 }
 
 void Server::onClientConnection() {
@@ -36,15 +37,22 @@ void Server::onDataReceived(QString data) {
     if (socket == 0)
         return;
 
-    Request *request = new Request(socket, data);
+    try {
 
-    //ignore malformed requests... perhaps log them in the future??
-    if(!request->isValid()) {
-        delete request;
-        return;
+         Request *request = new Request(socket, data);
+
+        //ignore malformed requests... perhaps log them in the future??
+        if(!request->isValid()) {
+            delete request;
+            return;
+        }
+
+        route(request);
+    } catch(std::exception &e) {
+
+    } catch(int e) {
+
     }
-
-    route(request);
 }
 
 void Server::onPong(quint64 elapsedTime) {

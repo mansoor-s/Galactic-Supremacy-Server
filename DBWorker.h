@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QString>
-#include "Database.h"
 #include <mongo/client/dbclient.h>
 #include <mongo/bson/bson.h>
 
@@ -21,7 +20,7 @@ signals:
     void ready();
     
 public slots:
-    void getUserId(Database *db, QString sessionId);
+    //void getUserId(Database *db, QString sessionId);
     
 };
 

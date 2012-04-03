@@ -10,5 +10,5 @@ DBWorker::~DBWorker() {
     delete this->connection;
 }
 
-void DBWorker::getUserId(Database *db, QString sessionId) {
-}
+//void DBWorker::getUserId(Database *db, QString sessionId) {
+//}
