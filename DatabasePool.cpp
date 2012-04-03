@@ -16,5 +16,5 @@ DatabasePool::DatabasePool(const char* host) {
 
 void DatabasePool::finished(DBContainer* container, mongo::BSONObj obj) {
     container->isAvailable = true;
-    //container->
+    container->callback(obj);
 }

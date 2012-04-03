@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     Chat.cpp \
     EventLoop.cpp \
     DatabasePool.cpp \
-    DBWorker.cpp
+    DBWorker.cpp \
+    Ship.cpp
 
 HEADERS += \
     Server.h \
@@ -40,9 +41,12 @@ HEADERS += \
     Chat.h \
     EventLoop.h \
     DatabasePool.h \
-    DBWorker.h
+    DBWorker.h \
+    Ship.h
 
 OTHER_FILES += \
     Readme.md \
     License.txt \
     .gitignore
+
+

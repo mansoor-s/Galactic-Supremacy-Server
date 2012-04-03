@@ -62,8 +62,10 @@ void Server::onClientDisconnection() {
 }
 
 void Server::route(Request *req) {
-    //switch(req->getType()) {
-      //  case
-    //}
+    switch(req->getType()) {
+        case Request::UnitMovement:
+
+            break;
+    }
 }
 
