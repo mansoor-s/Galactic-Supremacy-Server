@@ -1,5 +1,5 @@
 #include <QtCore/QCoreApplication>
-#include "DatabasePool.h"
+//#include "DatabasePool.h"
 #include "Server.h"
 #include "log.h"
 #include "Ship.h"
@@ -15,10 +15,10 @@ int main(int argc, char *argv[])
 
     Log *log = new Log();
 
-    DatabasePool *db = new DatabasePool(DB_HOST);
+    //DatabasePool *db = new DatabasePool(DB_HOST);
     //Ship::setDatabasePool(db);
 
-    Server *server = new Server(db, log);
+    Server *server = new Server(log);
 
     return a.exec();
 }

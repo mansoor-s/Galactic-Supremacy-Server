@@ -1,6 +1,6 @@
 #include "Server.h"
 
-Server::Server(DatabasePool *db, Log *log) {
+Server::Server(Log *log) {
     this->log = log;
     int port = 1337;
     server = new QWsServer(this);

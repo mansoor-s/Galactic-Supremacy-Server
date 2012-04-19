@@ -10,7 +10,8 @@ QT       += network
 
 QT       -= gui
 
-LIBS    += -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options -lboost_system-mt
+#not using mongodb anymore
+#LIBS    += -lmongoclient -lboost_thread-mt -lboost_filesystem -lboost_program_options -lboost_system-mt
 
 TARGET = Galactic-Supremacy-Server
 CONFIG   += console
@@ -26,8 +27,6 @@ SOURCES += main.cpp \
     QtWebSocket/QWsServer.cpp \
     Chat.cpp \
     EventLoop.cpp \
-    DatabasePool.cpp \
-    DBWorker.cpp \
     Ship.cpp
 
 HEADERS += \
@@ -40,8 +39,6 @@ HEADERS += \
     Client.h \
     Chat.h \
     EventLoop.h \
-    DatabasePool.h \
-    DBWorker.h \
     Ship.h \
     Flow.h
 
@@ -50,4 +47,5 @@ OTHER_FILES += \
     License.txt \
     .gitignore
 
-
+#include support for c++0x
+QMAKE_CXXFLAGS += -std=c++0x

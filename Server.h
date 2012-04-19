@@ -7,7 +7,6 @@
 
 #include "QtWebSocket/QWsServer.h"
 #include "QtWebSocket/QWsSocket.h"
-#include "DatabasePool.h"
 #include "Client.h"
 #include "Command.h"
 #include "Request.h"
@@ -18,7 +17,7 @@ class Server : public QObject
     Q_OBJECT
 
 public:
-    Server(DatabasePool *db, Log *log);
+    Server(Log *log);
     ~Server();
 
 public slots:

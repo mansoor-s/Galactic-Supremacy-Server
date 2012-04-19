@@ -2,13 +2,16 @@
 #define FLOW_H
 
 #include <QList>
+#include <functional>
 /**
     Class handles flow control for async DB calls
 
 
 */
-class Flow
-{
+class Flow {
+
+
+/*
     typedef void (*Function)();
 
     typedef void (*InnerCallback)(int);//this defines a type for the lambda that we are going to pass in
@@ -18,10 +21,19 @@ class Flow
     typedef void (*Callback)(InnerCallback);
     //defines type for final callback function which will take array of results for all of the async calls
     typedef void (*ResultFn)(QList<int>);
-
+*/
 public:
+    typedef std::function<void(QList<void*>)> Callback;
+    typedef std::function<void(void)> Fn;
+
     Flow() {}
 
+    void parallel(QList<Fn> fnList, Callack callback) {
+
+
+    }
+
+    /*
     void parallel(QList<Callback> fnList, ResultFn func) {
         int count = fnList.count();
         int currCount = 0;
@@ -69,6 +81,7 @@ public:
             });
         };
     }
+*/
 };
 
 #endif // FLOW_H
