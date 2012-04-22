@@ -9,10 +9,19 @@ EventLoop::EventLoop(QObject *parent = 0)
 }
 
 void EventLoop::start() {
+    /*
+        load system state from DB before starting event loop
+        including task queues
+     */
     this->timer->start();
 }
 
 void EventLoop::stop() {
+
+    /*
+        save system state to DB before stoping.
+        including task queues
+     */
     this->timer->stop();
 }
 

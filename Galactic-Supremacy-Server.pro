@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     QtWebSocket/QWsServer.cpp \
     Chat.cpp \
     EventLoop.cpp \
-    Ship.cpp
+    Ship.cpp \
+    Database.cpp
 
 HEADERS += \
     Server.h \
@@ -40,7 +41,12 @@ HEADERS += \
     Chat.h \
     EventLoop.h \
     Ship.h \
-    Flow.h
+    Flow.h \
+    Database.h \
+    Units/Ship.h \
+    Units/Entity.h \
+    Units/Panet.h \
+    Units/System.h
 
 OTHER_FILES += \
     Readme.md \

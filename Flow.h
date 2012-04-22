@@ -10,26 +10,26 @@
 */
 class Flow {
 
-
-/*
-    typedef void (*Function)();
-
-    typedef void (*InnerCallback)(int);//this defines a type for the lambda that we are going to pass in
-                                // to intercept the results
-
-    // defines type for the async function
-    typedef void (*Callback)(InnerCallback);
-    //defines type for final callback function which will take array of results for all of the async calls
-    typedef void (*ResultFn)(QList<int>);
-*/
 public:
     typedef std::function<void(QList<void*>)> Callback;
     typedef std::function<void(void)> Fn;
 
     Flow() {}
 
-    void parallel(QList<Fn> fnList, Callack callback) {
+    void parallel(QList<Fn> fnList, Callback callback) {
+        int count = fnList.count();
+        int curr = 0;
+        QList<void*> results;
+        Fn func;
+        foreach(func, fnList) {
+            auto innerCallback = [&curr, count, callback, &results](void* result) {
+                curr++;
+                results.push_back(result);
 
+            };
+
+            //func(innerCallback);
+        }
 
     }
 
