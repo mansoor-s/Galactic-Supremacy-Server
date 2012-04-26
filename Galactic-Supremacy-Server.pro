@@ -27,8 +27,8 @@ SOURCES += main.cpp \
     QtWebSocket/QWsServer.cpp \
     Chat.cpp \
     EventLoop.cpp \
-    Ship.cpp \
-    Database.cpp
+    Database.cpp \
+    ArenaManager.cpp
 
 HEADERS += \
     Server.h \
@@ -40,13 +40,15 @@ HEADERS += \
     Client.h \
     Chat.h \
     EventLoop.h \
-    Ship.h \
     Flow.h \
     Database.h \
     Units/Ship.h \
     Units/Entity.h \
     Units/Panet.h \
-    Units/System.h
+    Units/System.h \
+    Units/Moon.h \
+    Arena.h \
+    ArenaManager.h
 
 OTHER_FILES += \
     Readme.md \
@@ -54,4 +56,10 @@ OTHER_FILES += \
     .gitignore
 
 #include support for c++0x
-QMAKE_CXXFLAGS += -std=c++0x
+QMAKE_CXXFLAGS += -std=c++0x -U__STRICT_ANSI__
+
+
+
+
+
+

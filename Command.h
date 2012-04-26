@@ -1,3 +1,7 @@
+/*
+    Class represents every "command" or data that the websockets server
+    is sending to the client
+*/
 #ifndef COMMAND_H
 #define COMMAND_H
 
@@ -13,13 +17,19 @@ public:
 
     0 - unit movement
     1 - unit position update
-    2 - player/infrustrcuture updates
-    3 - private chat
-    4 - alliance chat
+    2 - unit damage
+    3 - unit destroy
+    4 - unit create
+    5 - player/infrustrcuture updates
+    6 - private chat
+    7 - alliance chat
     */
     enum Type {
         UnitMovement,
         UnitPosition,
+        UnitDamage,
+        UnitDestory,
+        UnitCreate,
         PlayerUpdate,
         PrivateChat,
         AllianceChat

@@ -1,3 +1,7 @@
+/*
+    Class represents ever "request" or data that the
+    client sends to the websockets server.
+*/
 #ifndef REQUEST_H
 #define REQUEST_H
 
@@ -121,6 +125,11 @@ protected:
         }
 
         this->valid = true;
+        route();
+    }
+
+    void route() {
+
     }
 
 private:

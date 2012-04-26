@@ -15,7 +15,7 @@ public:
     typedef std::function<void(void)> Fn;
 
     Flow() {}
-
+/*
     void parallel(QList<Fn> fnList, Callback callback) {
         int count = fnList.count();
         int curr = 0;
@@ -30,8 +30,7 @@ public:
 
             //func(innerCallback);
         }
-
-    }
+    }*/
 
     /*
     void parallel(QList<Callback> fnList, ResultFn func) {
