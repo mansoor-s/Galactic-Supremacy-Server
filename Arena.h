@@ -11,6 +11,7 @@
 #include "Request.h"
 #include <QVector>
 #include "Units/Entity.h"
+#include <functional>
 
 class UnitMove {
 
@@ -29,14 +30,32 @@ private:
 class Arena : public QObject {
     Q_OBJECT
 public:
-    Arena() {}
+    Arena(int id) {
+        this->id = id;
+
+    }
     ~Arena() {}
 
+    int getId() {
+        return this->id;
+    }
+
     //non-blocking method
-    void shutdown();
+    void shutdown(std::function<void(bool)> fn) {
+        //call callback when finished saving state to DB
+        fn(true);
+    }
+
+    //non blocking method
+    void load(std::function<void(bool)> fn) {
+        //load assets from Db
+
+        fn(true);
+    }
 
 private:
     QList<Request*> turnRequests;
     QQueue<Request*> requestsNotFinished;
+    int id;
 };
 #endif // ARENA_H

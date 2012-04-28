@@ -8,11 +8,11 @@
 
 
 */
+typedef std::function<void(QList<void*>)> Fn;
+typedef std::function<void(bool)> Callback;
 class Flow {
 
 public:
-    typedef std::function<void(QList<void*>)> Callback;
-    typedef std::function<void(void)> Fn;
 
     Flow() {}
 /*

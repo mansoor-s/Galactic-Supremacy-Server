@@ -5,6 +5,7 @@
 #define ARENAMANAGER_H
 #include "Arena.h"
 #include <QMap>
+#include "Flow.h"
 
 class ArenaManager
 {
