@@ -7,8 +7,9 @@
 #define ARENA_H
 #include <QObject>
 #include <QList>
+#include <QQueue>
 #include "Request.h"
-#include <qt/qvector3d.h>
+#include <QVector>
 #include "Units/Entity.h"
 
 class UnitMove {
@@ -35,6 +36,7 @@ public:
     void shutdown();
 
 private:
-    QList<Request*> requests;
+    QList<Request*> turnRequests;
+    QQueue<Request*> requestsNotFinished;
 };
 #endif // ARENA_H

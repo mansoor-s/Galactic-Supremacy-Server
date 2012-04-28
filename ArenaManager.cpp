@@ -3,8 +3,8 @@
 ArenaManager::ArenaManager() {
 }
 
-void ArenaManager::startArena(QString id) {
+void ArenaManager::startArena(int id) {
 }
 
-void ArenaManager::shutdownArena(QString id) {
+void ArenaManager::shutdownArena(int id) {
 }
